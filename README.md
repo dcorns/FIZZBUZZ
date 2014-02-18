@@ -19,4 +19,21 @@ Since result is initialized as '', if the first 2 conditions fail, I can use thi
 
 stage two criteria: make stage one extensable in order to add 30 more conditions.
 
+This request would cause the code to be hard to read and vulnerable to bugs if I stuck with the original solution. Additionally much repetition of code would exist.
+In order to solve this issue, I chose to use an array of objects, each containing a number and a string property.
 
+		function test(num,word){
+			this.num=num;
+			this.word=word;
+		}
+
+Of course with a request like this a method of storing the relationships would be ideal, but no such storage requirement exists in the specification. So while each new condition would need to be hard coded this is the most readible and efficient way I can come up with to solve it.
+
+Since I am using an object array I can write the evaluation code simply.
+
+//Check for all object conditions
+		for(var count=0;count<FB.length-1;count++){
+if(FB[count].num%num==0){result=result+FB[count].word}
+
+//If no conditions are met, store num in the result for returning to the caller
+	if(result=''){result=num}
